@@ -17,8 +17,6 @@ final class LandingInteractor : PresenterToLandingInteractorProtocol, WebSocketD
     fileprivate var from : From?
     fileprivate var selectArray : [String]? =  ["BTCUSDT", "BNBBTC", "ETHBTC"]
     
-    fileprivate var lastElements = [[String]]()
-    
     func startProcessing(from : From?){
         
         let arr = arrForButton()
@@ -64,28 +62,16 @@ final class LandingInteractor : PresenterToLandingInteractorProtocol, WebSocketD
         
         switch from {
         case .bid:
-            bidProcessing(text: text, e: e, E: E, s: s, U: U, u: u, b: b)
+            let bb = dataProcessing(text : text, arr : b)
+            let response = LandingResponse(e: e, E: E, s: s, U: U, u: u, b: bb, a: [])
+            presenter?.dataTransfer(response: response)
         case .ask:
-            askProcessing(text: text, e: e, E: E, s: s, U: U, u: u, a: a)
+            let aa = dataProcessing(text : text, arr : a)
+            let response = LandingResponse(e: e, E: E, s: s, U: U, u: u, b: [], a: aa)
+            presenter?.dataTransfer(response: response)
         default:
             return
         }
-    }
-    
-    private func bidProcessing(text : String?, e : String?, E : Int?, s : String?, U : Int?, u : Int?, b : [[String]]?){
-        
-        guard let e = e, let E = E, let s = s, let U = U, let u = u, let b = b  else { return }
-        let bb = dataProcessing(text : text, arr : b)
-        let response = LandingResponse(e: e, E: E, s: s, U: U, u: u, b: bb, a: [])
-        presenter?.dataTransfer(response: response)
-    }
-    
-    private func askProcessing(text : String?, e : String?, E : Int?, s : String?, U : Int?, u : Int?, a : [[String]]?){
-        
-        guard let e = e, let E = E, let s = s, let U = U, let u = u, let a = a  else { return }
-        let aa = dataProcessing(text : text, arr : a)
-        let response = LandingResponse(e: e, E: E, s: s, U: U, u: u, b: [], a: aa)
-        presenter?.dataTransfer(response: response)
     }
     
     private func dataProcessing(text : String?, arr : [[String]]) -> [[Double]]{

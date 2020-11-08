@@ -46,9 +46,6 @@ final class DifferenceInteractor : PresenterToDifferenceInteractorProtocol, WebS
     
     private func responseSocketText(text : String?){
         
-        var bb : [[Double]] = []
-        var aa : [[Double]] = []
-        
         guard let data = text?.data(using: .utf8),
               let jsonData = try? JSONSerialization.jsonObject(with: data),
               let jsonDict = jsonData as? [String : Any] else { return }
@@ -61,8 +58,8 @@ final class DifferenceInteractor : PresenterToDifferenceInteractorProtocol, WebS
         let b = jsonDict["b"] as! [[String]] // Bids to be updated
         let a = jsonDict["a"] as! [[String]] // Asks to be updated
         
-        bb = dataProcessing(text : text, arr : b)
-        aa = dataProcessing(text : text, arr : a)
+        let bb = dataProcessing(text : text, arr : b)
+        let aa = dataProcessing(text : text, arr : a)
         
         let response = DifferenceResponse(e: e, E: E, s: s, U: U, u: u, b: bb, a: aa)
         presenter?.dataTransfer(response: response)

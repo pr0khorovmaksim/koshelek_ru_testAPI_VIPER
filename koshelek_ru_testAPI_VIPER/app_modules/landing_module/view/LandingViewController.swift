@@ -351,7 +351,7 @@ extension LandingViewController : PresenterToLandingViewProtocol{
 extension LandingViewController : UIPickerViewDelegate, UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        1
+        return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -365,6 +365,13 @@ extension LandingViewController : UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         selectWord = selectArray?[row]
+        
+        let str = selectWord
+        let delimiter = " / "
+        let newStr = str?.components(separatedBy: delimiter)
+        amountLabel.text = "Amount \(newStr![0])"
+        priceLabel.text = "Price \(newStr![1])"
+        
         presenter?.selectQuotedCurrency(select : row)
         let att = NSMutableAttributedString(string: (selectWord)!)
         att.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.lightGray, range:  NSRange(location: 3, length: selectWord!.count - 3))
