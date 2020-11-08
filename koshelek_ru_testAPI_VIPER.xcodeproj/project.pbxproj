@@ -7,23 +7,63 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB1955A311A0EAD60C4E420D /* Pods_koshelek_ru_testAPI_VIPER.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2B7D77226FC985E7DA91841 /* Pods_koshelek_ru_testAPI_VIPER.framework */; };
+		B577068825570226000FD2C0 /* DifferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577068725570226000FD2C0 /* DifferenceViewController.swift */; };
+		B577068B2557022E000FD2C0 /* DifferencePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577068A2557022E000FD2C0 /* DifferencePresenter.swift */; };
+		B577068E25570236000FD2C0 /* DifferenceRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577068D25570236000FD2C0 /* DifferenceRouter.swift */; };
+		B57706912557023E000FD2C0 /* DifferenceInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57706902557023E000FD2C0 /* DifferenceInteractor.swift */; };
+		B577069425570244000FD2C0 /* DifferenceEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577069325570244000FD2C0 /* DifferenceEntity.swift */; };
+		B57706972557024C000FD2C0 /* DifferenceProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57706962557024C000FD2C0 /* DifferenceProtocols.swift */; };
+		B577069A25570383000FD2C0 /* DifferenceViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577069925570383000FD2C0 /* DifferenceViewHelper.swift */; };
+		B577069D255703DB000FD2C0 /* DifferenceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577069C255703DB000FD2C0 /* DifferenceTableViewCell.swift */; };
+		B57706A42557E152000FD2C0 /* LandingTableViewCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57706A32557E152000FD2C0 /* LandingTableViewCell2.swift */; };
+		B57706A72557E452000FD2C0 /* DifferenceTableViewCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57706A62557E452000FD2C0 /* DifferenceTableViewCell2.swift */; };
 		B5BB932225554B9E00602EFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BB932125554B9E00602EFC /* AppDelegate.swift */; };
 		B5BB932425554B9F00602EFC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BB932325554B9E00602EFC /* SceneDelegate.swift */; };
-		B5BB932625554B9F00602EFC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BB932525554B9F00602EFC /* ViewController.swift */; };
-		B5BB932925554B9F00602EFC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5BB932725554B9F00602EFC /* Main.storyboard */; };
+		B5BB932625554B9F00602EFC /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BB932525554B9F00602EFC /* LandingViewController.swift */; };
 		B5BB932B25554B9F00602EFC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5BB932A25554B9F00602EFC /* Assets.xcassets */; };
 		B5BB932E25554B9F00602EFC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5BB932C25554B9F00602EFC /* LaunchScreen.storyboard */; };
+		B5BB934E25554DFF00602EFC /* LandingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BB934D25554DFF00602EFC /* LandingPresenter.swift */; };
+		B5BB935125554E0600602EFC /* LandingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BB935025554E0600602EFC /* LandingRouter.swift */; };
+		B5BB935425554E0D00602EFC /* LandingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BB935325554E0D00602EFC /* LandingInteractor.swift */; };
+		B5BB935725554E1400602EFC /* LandingEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BB935625554E1400602EFC /* LandingEntity.swift */; };
+		B5BB935A25554E1B00602EFC /* LandingProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BB935925554E1B00602EFC /* LandingProtocols.swift */; };
+		B5BB935E25554F3E00602EFC /* TabBarRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BB935D25554F3E00602EFC /* TabBarRouter.swift */; };
+		B5BB936125554F4800602EFC /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BB936025554F4800602EFC /* TabBarController.swift */; };
+		B5BB9365255550E900602EFC /* LandingViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BB9364255550E900602EFC /* LandingViewHelper.swift */; };
+		B5BB9368255561D800602EFC /* LandingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BB9367255561D800602EFC /* LandingTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		86C0E44E0A2E52202E404C5C /* Pods-koshelek_ru_testAPI_VIPER.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-koshelek_ru_testAPI_VIPER.release.xcconfig"; path = "Pods/Target Support Files/Pods-koshelek_ru_testAPI_VIPER/Pods-koshelek_ru_testAPI_VIPER.release.xcconfig"; sourceTree = "<group>"; };
+		A2B7D77226FC985E7DA91841 /* Pods_koshelek_ru_testAPI_VIPER.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_koshelek_ru_testAPI_VIPER.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4D62CA66D4B334D52995291 /* Pods-koshelek_ru_testAPI_VIPER.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-koshelek_ru_testAPI_VIPER.debug.xcconfig"; path = "Pods/Target Support Files/Pods-koshelek_ru_testAPI_VIPER/Pods-koshelek_ru_testAPI_VIPER.debug.xcconfig"; sourceTree = "<group>"; };
+		B577068725570226000FD2C0 /* DifferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifferenceViewController.swift; sourceTree = "<group>"; };
+		B577068A2557022E000FD2C0 /* DifferencePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifferencePresenter.swift; sourceTree = "<group>"; };
+		B577068D25570236000FD2C0 /* DifferenceRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifferenceRouter.swift; sourceTree = "<group>"; };
+		B57706902557023E000FD2C0 /* DifferenceInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifferenceInteractor.swift; sourceTree = "<group>"; };
+		B577069325570244000FD2C0 /* DifferenceEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifferenceEntity.swift; sourceTree = "<group>"; };
+		B57706962557024C000FD2C0 /* DifferenceProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifferenceProtocols.swift; sourceTree = "<group>"; };
+		B577069925570383000FD2C0 /* DifferenceViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifferenceViewHelper.swift; sourceTree = "<group>"; };
+		B577069C255703DB000FD2C0 /* DifferenceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifferenceTableViewCell.swift; sourceTree = "<group>"; };
+		B57706A32557E152000FD2C0 /* LandingTableViewCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingTableViewCell2.swift; sourceTree = "<group>"; };
+		B57706A62557E452000FD2C0 /* DifferenceTableViewCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifferenceTableViewCell2.swift; sourceTree = "<group>"; };
 		B5BB931E25554B9E00602EFC /* koshelek_ru_testAPI_VIPER.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = koshelek_ru_testAPI_VIPER.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5BB932125554B9E00602EFC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5BB932325554B9E00602EFC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B5BB932525554B9F00602EFC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B5BB932825554B9F00602EFC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B5BB932525554B9F00602EFC /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		B5BB932A25554B9F00602EFC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5BB932D25554B9F00602EFC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B5BB932F25554B9F00602EFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5BB934D25554DFF00602EFC /* LandingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPresenter.swift; sourceTree = "<group>"; };
+		B5BB935025554E0600602EFC /* LandingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingRouter.swift; sourceTree = "<group>"; };
+		B5BB935325554E0D00602EFC /* LandingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingInteractor.swift; sourceTree = "<group>"; };
+		B5BB935625554E1400602EFC /* LandingEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingEntity.swift; sourceTree = "<group>"; };
+		B5BB935925554E1B00602EFC /* LandingProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingProtocols.swift; sourceTree = "<group>"; };
+		B5BB935D25554F3E00602EFC /* TabBarRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarRouter.swift; sourceTree = "<group>"; };
+		B5BB936025554F4800602EFC /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		B5BB9364255550E900602EFC /* LandingViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewHelper.swift; sourceTree = "<group>"; };
+		B5BB9367255561D800602EFC /* LandingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +71,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB1955A311A0EAD60C4E420D /* Pods_koshelek_ru_testAPI_VIPER.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		911173A509B9C72EC0389BE7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A2B7D77226FC985E7DA91841 /* Pods_koshelek_ru_testAPI_VIPER.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B5BB931525554B9E00602EFC = {
 			isa = PBXGroup;
 			children = (
 				B5BB932025554B9E00602EFC /* koshelek_ru_testAPI_VIPER */,
 				B5BB931F25554B9E00602EFC /* Products */,
+				F961DFADF4DB788323A7EC0B /* Pods */,
+				911173A509B9C72EC0389BE7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +107,194 @@
 		B5BB932025554B9E00602EFC /* koshelek_ru_testAPI_VIPER */ = {
 			isa = PBXGroup;
 			children = (
-				B5BB932125554B9E00602EFC /* AppDelegate.swift */,
-				B5BB932325554B9E00602EFC /* SceneDelegate.swift */,
-				B5BB932525554B9F00602EFC /* ViewController.swift */,
-				B5BB932725554B9F00602EFC /* Main.storyboard */,
-				B5BB932A25554B9F00602EFC /* Assets.xcassets */,
-				B5BB932C25554B9F00602EFC /* LaunchScreen.storyboard */,
+				B5BB933625554BB500602EFC /* app_settings */,
+				B5BB933725554BC800602EFC /* app_modules */,
+				B5BB933A25554C0900602EFC /* app_icons */,
+				B5BB933B25554C1A00602EFC /* app_ui */,
 				B5BB932F25554B9F00602EFC /* Info.plist */,
 			);
 			path = koshelek_ru_testAPI_VIPER;
+			sourceTree = "<group>";
+		};
+		B5BB933625554BB500602EFC /* app_settings */ = {
+			isa = PBXGroup;
+			children = (
+				B5BB932125554B9E00602EFC /* AppDelegate.swift */,
+				B5BB932325554B9E00602EFC /* SceneDelegate.swift */,
+			);
+			path = app_settings;
+			sourceTree = "<group>";
+		};
+		B5BB933725554BC800602EFC /* app_modules */ = {
+			isa = PBXGroup;
+			children = (
+				B5BB933E25554D6000602EFC /* tabBar_module */,
+				B5BB933C25554D4100602EFC /* landing_module */,
+				B5BB933D25554D4B00602EFC /* difference_module */,
+			);
+			path = app_modules;
+			sourceTree = "<group>";
+		};
+		B5BB933A25554C0900602EFC /* app_icons */ = {
+			isa = PBXGroup;
+			children = (
+				B5BB932A25554B9F00602EFC /* Assets.xcassets */,
+			);
+			path = app_icons;
+			sourceTree = "<group>";
+		};
+		B5BB933B25554C1A00602EFC /* app_ui */ = {
+			isa = PBXGroup;
+			children = (
+				B5BB932C25554B9F00602EFC /* LaunchScreen.storyboard */,
+			);
+			path = app_ui;
+			sourceTree = "<group>";
+		};
+		B5BB933C25554D4100602EFC /* landing_module */ = {
+			isa = PBXGroup;
+			children = (
+				B5BB934425554D9700602EFC /* protocols */,
+				B5BB934325554D8F00602EFC /* entity */,
+				B5BB934225554D8A00602EFC /* interactor */,
+				B5BB934125554D8300602EFC /* router */,
+				B5BB934025554D7E00602EFC /* presenter */,
+				B5BB933F25554D7900602EFC /* view */,
+			);
+			path = landing_module;
+			sourceTree = "<group>";
+		};
+		B5BB933D25554D4B00602EFC /* difference_module */ = {
+			isa = PBXGroup;
+			children = (
+				B5BB934A25554DBC00602EFC /* protocols */,
+				B5BB934925554DB600602EFC /* entity */,
+				B5BB934825554DB000602EFC /* interactor */,
+				B5BB934725554DAB00602EFC /* router */,
+				B5BB934625554DA500602EFC /* presenter */,
+				B5BB934525554D9F00602EFC /* view */,
+			);
+			path = difference_module;
+			sourceTree = "<group>";
+		};
+		B5BB933E25554D6000602EFC /* tabBar_module */ = {
+			isa = PBXGroup;
+			children = (
+				B5BB935D25554F3E00602EFC /* TabBarRouter.swift */,
+				B5BB936025554F4800602EFC /* TabBarController.swift */,
+			);
+			path = tabBar_module;
+			sourceTree = "<group>";
+		};
+		B5BB933F25554D7900602EFC /* view */ = {
+			isa = PBXGroup;
+			children = (
+				B5BB932525554B9F00602EFC /* LandingViewController.swift */,
+				B5BB9364255550E900602EFC /* LandingViewHelper.swift */,
+				B5BB9367255561D800602EFC /* LandingTableViewCell.swift */,
+				B57706A32557E152000FD2C0 /* LandingTableViewCell2.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		B5BB934025554D7E00602EFC /* presenter */ = {
+			isa = PBXGroup;
+			children = (
+				B5BB934D25554DFF00602EFC /* LandingPresenter.swift */,
+			);
+			path = presenter;
+			sourceTree = "<group>";
+		};
+		B5BB934125554D8300602EFC /* router */ = {
+			isa = PBXGroup;
+			children = (
+				B5BB935025554E0600602EFC /* LandingRouter.swift */,
+			);
+			path = router;
+			sourceTree = "<group>";
+		};
+		B5BB934225554D8A00602EFC /* interactor */ = {
+			isa = PBXGroup;
+			children = (
+				B5BB935325554E0D00602EFC /* LandingInteractor.swift */,
+			);
+			path = interactor;
+			sourceTree = "<group>";
+		};
+		B5BB934325554D8F00602EFC /* entity */ = {
+			isa = PBXGroup;
+			children = (
+				B5BB935625554E1400602EFC /* LandingEntity.swift */,
+			);
+			path = entity;
+			sourceTree = "<group>";
+		};
+		B5BB934425554D9700602EFC /* protocols */ = {
+			isa = PBXGroup;
+			children = (
+				B5BB935925554E1B00602EFC /* LandingProtocols.swift */,
+			);
+			path = protocols;
+			sourceTree = "<group>";
+		};
+		B5BB934525554D9F00602EFC /* view */ = {
+			isa = PBXGroup;
+			children = (
+				B577068725570226000FD2C0 /* DifferenceViewController.swift */,
+				B577069925570383000FD2C0 /* DifferenceViewHelper.swift */,
+				B577069C255703DB000FD2C0 /* DifferenceTableViewCell.swift */,
+				B57706A62557E452000FD2C0 /* DifferenceTableViewCell2.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		B5BB934625554DA500602EFC /* presenter */ = {
+			isa = PBXGroup;
+			children = (
+				B577068A2557022E000FD2C0 /* DifferencePresenter.swift */,
+			);
+			path = presenter;
+			sourceTree = "<group>";
+		};
+		B5BB934725554DAB00602EFC /* router */ = {
+			isa = PBXGroup;
+			children = (
+				B577068D25570236000FD2C0 /* DifferenceRouter.swift */,
+			);
+			path = router;
+			sourceTree = "<group>";
+		};
+		B5BB934825554DB000602EFC /* interactor */ = {
+			isa = PBXGroup;
+			children = (
+				B57706902557023E000FD2C0 /* DifferenceInteractor.swift */,
+			);
+			path = interactor;
+			sourceTree = "<group>";
+		};
+		B5BB934925554DB600602EFC /* entity */ = {
+			isa = PBXGroup;
+			children = (
+				B577069325570244000FD2C0 /* DifferenceEntity.swift */,
+			);
+			path = entity;
+			sourceTree = "<group>";
+		};
+		B5BB934A25554DBC00602EFC /* protocols */ = {
+			isa = PBXGroup;
+			children = (
+				B57706962557024C000FD2C0 /* DifferenceProtocols.swift */,
+			);
+			path = protocols;
+			sourceTree = "<group>";
+		};
+		F961DFADF4DB788323A7EC0B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A4D62CA66D4B334D52995291 /* Pods-koshelek_ru_testAPI_VIPER.debug.xcconfig */,
+				86C0E44E0A2E52202E404C5C /* Pods-koshelek_ru_testAPI_VIPER.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +304,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B5BB933225554B9F00602EFC /* Build configuration list for PBXNativeTarget "koshelek_ru_testAPI_VIPER" */;
 			buildPhases = (
+				5719221399EF626C940D725E /* [CP] Check Pods Manifest.lock */,
 				B5BB931A25554B9E00602EFC /* Sources */,
 				B5BB931B25554B9E00602EFC /* Frameworks */,
 				B5BB931C25554B9E00602EFC /* Resources */,
+				8B6883B47DF20E2126DC3D96 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -126,34 +358,83 @@
 			files = (
 				B5BB932E25554B9F00602EFC /* LaunchScreen.storyboard in Resources */,
 				B5BB932B25554B9F00602EFC /* Assets.xcassets in Resources */,
-				B5BB932925554B9F00602EFC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5719221399EF626C940D725E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-koshelek_ru_testAPI_VIPER-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8B6883B47DF20E2126DC3D96 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-koshelek_ru_testAPI_VIPER/Pods-koshelek_ru_testAPI_VIPER-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-koshelek_ru_testAPI_VIPER/Pods-koshelek_ru_testAPI_VIPER-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B5BB931A25554B9E00602EFC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5BB932625554B9F00602EFC /* ViewController.swift in Sources */,
+				B57706A42557E152000FD2C0 /* LandingTableViewCell2.swift in Sources */,
+				B5BB935E25554F3E00602EFC /* TabBarRouter.swift in Sources */,
+				B577069425570244000FD2C0 /* DifferenceEntity.swift in Sources */,
+				B5BB9368255561D800602EFC /* LandingTableViewCell.swift in Sources */,
+				B577068B2557022E000FD2C0 /* DifferencePresenter.swift in Sources */,
+				B5BB932625554B9F00602EFC /* LandingViewController.swift in Sources */,
+				B5BB935125554E0600602EFC /* LandingRouter.swift in Sources */,
+				B577069A25570383000FD2C0 /* DifferenceViewHelper.swift in Sources */,
+				B57706A72557E452000FD2C0 /* DifferenceTableViewCell2.swift in Sources */,
+				B577068825570226000FD2C0 /* DifferenceViewController.swift in Sources */,
+				B5BB936125554F4800602EFC /* TabBarController.swift in Sources */,
+				B5BB9365255550E900602EFC /* LandingViewHelper.swift in Sources */,
+				B5BB935425554E0D00602EFC /* LandingInteractor.swift in Sources */,
+				B5BB935A25554E1B00602EFC /* LandingProtocols.swift in Sources */,
+				B57706972557024C000FD2C0 /* DifferenceProtocols.swift in Sources */,
+				B577069D255703DB000FD2C0 /* DifferenceTableViewCell.swift in Sources */,
+				B57706912557023E000FD2C0 /* DifferenceInteractor.swift in Sources */,
 				B5BB932225554B9E00602EFC /* AppDelegate.swift in Sources */,
+				B5BB934E25554DFF00602EFC /* LandingPresenter.swift in Sources */,
+				B577068E25570236000FD2C0 /* DifferenceRouter.swift in Sources */,
 				B5BB932425554B9F00602EFC /* SceneDelegate.swift in Sources */,
+				B5BB935725554E1400602EFC /* LandingEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		B5BB932725554B9F00602EFC /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B5BB932825554B9F00602EFC /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		B5BB932C25554B9F00602EFC /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -283,12 +564,14 @@
 		};
 		B5BB933325554B9F00602EFC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A4D62CA66D4B334D52995291 /* Pods-koshelek_ru_testAPI_VIPER.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XS2KGXGTG9;
 				INFOPLIST_FILE = koshelek_ru_testAPI_VIPER/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,12 +585,14 @@
 		};
 		B5BB933425554B9F00602EFC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 86C0E44E0A2E52202E404C5C /* Pods-koshelek_ru_testAPI_VIPER.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XS2KGXGTG9;
 				INFOPLIST_FILE = koshelek_ru_testAPI_VIPER/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
