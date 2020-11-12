@@ -12,10 +12,6 @@ extension DifferenceViewController{
     
     func setUpModule(){
         
-        let att = NSMutableAttributedString(string: (selectWord)!)
-        att.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.lightGray, range:  NSRange(location: 3, length: selectWord!.count - 3))
-        dropdownOut.setAttributedTitle(att, for: .normal)
-        
         //MARK: - view
         view.backgroundColor = .white
         

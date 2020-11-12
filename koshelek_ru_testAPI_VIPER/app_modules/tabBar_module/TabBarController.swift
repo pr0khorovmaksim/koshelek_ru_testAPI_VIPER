@@ -16,6 +16,8 @@ typealias Tabs = (
 
 final class TabBarController: UITabBarController {
     
+    fileprivate let constants : Constants = Constants()
+    
     init(tabs : Tabs) {
         super.init(nibName: nil, bundle: nil)
         viewControllers = [tabs.bid, tabs.ask, tabs.details]
@@ -31,7 +33,7 @@ final class TabBarController: UITabBarController {
         UINavigationBar.appearance().barTintColor = #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1)
         tabBar.barTintColor = #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1)
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.black]
-        navigationItem.title = "Test Application"
+        navigationItem.title = constants.appTitle
         tabBar.isTranslucent = false
     }
 }

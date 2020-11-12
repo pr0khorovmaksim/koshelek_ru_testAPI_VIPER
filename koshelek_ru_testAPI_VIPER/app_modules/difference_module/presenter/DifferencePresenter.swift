@@ -13,7 +13,6 @@ final class DifferencePresenter : ViewToDifferencePresenterProtocol{
     var router: PresenterToDifferenceRouterProtocol?
     var interactor: PresenterToDifferenceInteractorProtocol?
     
-    
     func preparingData(){
         interactor?.startProcessing()
     }

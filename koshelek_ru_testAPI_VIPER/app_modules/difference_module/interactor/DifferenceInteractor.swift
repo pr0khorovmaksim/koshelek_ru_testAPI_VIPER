@@ -12,21 +12,10 @@ final class DifferenceInteractor : PresenterToDifferenceInteractorProtocol, WebS
     
     var presenter: InteractorToDifferencePresenterProtocol?
     
-    fileprivate var socket = WebSocket(url: URL(string: "wss://stream.binance.com:9443/ws/btcusdt@depth@1000ms")!)
+    fileprivate static let constants : Constants = Constants()
+    fileprivate var socket = WebSocket(url: URL(string: constants.socketUrl)!)
     fileprivate var timer : Timer?
-    fileprivate var selectArray : [String]? =  ["BTCUSDT", "BNBBTC", "ETHBTC"]
-    
-    func startProcessing(){
-        let arr = arrForButton()
-        presenter?.dataForButtonTransfer(selectArray: arr)
-        connect()
-    }
-    
-    func connect(){
-        
-        socket.delegate = self
-        socket.connect()
-    }
+    fileprivate var selectArray : [String]? = constants.arrayСurrencies
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
         print("websocket is disconnected: \(String(error?.localizedDescription ?? ""))")
@@ -68,7 +57,6 @@ final class DifferenceInteractor : PresenterToDifferenceInteractorProtocol, WebS
     private func dataProcessing(text : String?, arr : [[String]]) -> [[Double]]{
         
         var array : [[Double]] = []
-        
         for i in 0..<arr.count{
             let price = Double(arr[i][0])?.rounded(toPlaces: 6) ?? 0 // Price level to be updated
             let diff = Double(arr[i][1])?.rounded(toPlaces: 4) ?? 0 // Quantity
@@ -90,13 +78,13 @@ final class DifferenceInteractor : PresenterToDifferenceInteractorProtocol, WebS
         
         let currentDateTime = Date()
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        formatter.dateFormat = DifferenceInteractor.constants.dateFormat
         let timer = formatter.string(from: currentDateTime)
-        
         presenter?.timerTransfer(timer : timer)
     }
     
     private func arrForButton() -> [String]{
+        
         var arr : [String]? = []
         for i in 0..<selectArray!.count{
             var selectWord = selectArray![i]
@@ -106,20 +94,39 @@ final class DifferenceInteractor : PresenterToDifferenceInteractorProtocol, WebS
         return arr!
     }
     
+    func selectDataProcessing(select : Int?){
+        
+        webSocketDiconnect()
+        let selectString = selectArray![select ?? 0].lowercased()
+        let url = DifferenceInteractor.constants.socketUrlEndpoint + DifferenceInteractor.constants.socletUrlWs + selectString + DifferenceInteractor.constants.socletUrlDiffDepthStreamName
+        socket = WebSocket(url: URL(string: url)!)
+        webSocketConnect()
+    }
+    
+    func startProcessing(){
+        
+        let arr = arrForButton()
+        presenter?.dataForButtonTransfer(selectArray: arr)
+        webSocketConnect()
+    }
+    
     func stopProcessing(){
-        socket.disconnect(forceTimeout: 0, closeCode: 0)
-        socket.delegate = nil
+        
+        webSocketDiconnect()
         timer = nil
         timer?.invalidate()
     }
     
-    func selectDataProcessing(select : Int?){
-        let selectString = selectArray![select ?? 0].lowercased()
-        socket.disconnect(forceTimeout: 0, closeCode: 0)
-        socket.delegate = nil
-        socket = WebSocket(url: URL(string: "wss://stream.binance.com:9443/ws/\(selectString)@depth@1000ms")!)
+    private func webSocketConnect(){
+        
         socket.delegate = self
         socket.connect()
+    }
+    
+    private func webSocketDiconnect(){
+        
+        socket.disconnect(forceTimeout: 0, closeCode: 0)
+        socket.delegate = nil
     }
 }
 

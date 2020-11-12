@@ -10,6 +10,7 @@ import UIKit
 
 final class TabBarRouter{
     
+    fileprivate static let constants : Constants = Constants()
     fileprivate var viewController : UIViewController
     
     typealias SubModules = (bid : UIViewController, ask : UIViewController, details : UIViewController)
@@ -29,15 +30,15 @@ final class TabBarRouter{
 
 extension TabBarRouter{
     
-    static func tabs(subModules : SubModules) -> Tabs{
+    static private func tabs(subModules : SubModules) -> Tabs{
         
-        let bid = UIImage(named: "plusIcon")?.withRenderingMode(.alwaysTemplate)
-        let ask = UIImage(named: "minusIcon")?.withRenderingMode(.alwaysTemplate)
-        let details = UIImage(named: "infoIcon")?.withRenderingMode(.alwaysTemplate)
+        let bid = UIImage(named: constants.tabBarBidIcon)?.withRenderingMode(.alwaysTemplate)
+        let ask = UIImage(named: constants.tabBarAskIcon)?.withRenderingMode(.alwaysTemplate)
+        let details = UIImage(named: constants.tabBarDetailsIcon)?.withRenderingMode(.alwaysTemplate)
         
-        let bidBarItem = UITabBarItem(title: "Info: Bid", image: bid, tag: 11)
-        let askBarItem = UITabBarItem(title: "Info: Ask", image: ask, tag: 12)
-        let detailsBarItem = UITabBarItem(title: "Details", image: details, tag: 13)
+        let bidBarItem = UITabBarItem(title: constants.tabBarBidItem, image: bid, tag: 11)
+        let askBarItem = UITabBarItem(title: constants.tabBarAskItem, image: ask, tag: 12)
+        let detailsBarItem = UITabBarItem(title: constants.tabBarDetailsItem, image: details, tag: 13)
         
         subModules.bid.tabBarItem = bidBarItem
         subModules.ask.tabBarItem = askBarItem

@@ -6,8 +6,19 @@
 //
 
 import UIKit
+import Starscream
 
 final class LandingViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    var presenter : ViewToLandingPresenterProtocol?
+    
+    fileprivate static let constants : Constants = Constants()
+    fileprivate var response : LandingResponse? = nil
+    fileprivate var from : From?
+    fileprivate var toolBar : UIToolbar = UIToolbar()
+    fileprivate var picker : UIPickerView = UIPickerView()
+    fileprivate var selectArray : [String]? = []
+    fileprivate var selectWord : String? = constants.selectWord
     
     //MARK: - tableView
     let tableView : UITableView = {
@@ -17,8 +28,8 @@ final class LandingViewController: UIViewController, UITableViewDataSource, UITa
         tableView.separatorStyle = .none
         tableView.showsHorizontalScrollIndicator = false
         tableView.showsVerticalScrollIndicator = false
-        tableView.register(LandingTableViewCell.self, forCellReuseIdentifier: "Cell")
-        tableView.register(LandingTableViewCell2.self, forCellReuseIdentifier: "Cell2")
+        tableView.register(LandingTableViewCell.self, forCellReuseIdentifier: constants.cellValue)
+        tableView.register(LandingTableViewCell2.self, forCellReuseIdentifier: constants.cellSecondValue)
         tableView.backgroundColor = .white
         return tableView
     }()
@@ -37,7 +48,7 @@ final class LandingViewController: UIViewController, UITableViewDataSource, UITa
         button.translatesAutoresizingMaskIntoConstraints = false
         button.isSelected = false
         button.addTarget(self, action: #selector(dropdown), for: .touchUpInside)
-        let img = UIImage(named: "arrowIcon")?.withRenderingMode(.alwaysTemplate)
+        let img = UIImage(named: constants.dropdownOutIcon)?.withRenderingMode(.alwaysTemplate)
         button.setImage(img, for: .normal )
         button.imageView?.contentMode = .scaleAspectFit
         button.imageView?.tintColor = .lightGray
@@ -52,7 +63,7 @@ final class LandingViewController: UIViewController, UITableViewDataSource, UITa
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .lightGray
-        label.text = "Amount BTC"
+        label.text = constants.amountValue
         label.numberOfLines = 1
         label.textAlignment = .center
         return label
@@ -63,7 +74,7 @@ final class LandingViewController: UIViewController, UITableViewDataSource, UITa
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .lightGray
-        label.text = "Price USDT"
+        label.text = constants.priceValue
         label.numberOfLines = 1
         label.textAlignment = .center
         return label
@@ -74,7 +85,7 @@ final class LandingViewController: UIViewController, UITableViewDataSource, UITa
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .lightGray
-        label.text = "Total"
+        label.text = constants.totalValue
         label.numberOfLines = 1
         label.textAlignment = .center
         return label
@@ -91,57 +102,36 @@ final class LandingViewController: UIViewController, UITableViewDataSource, UITa
         return stackView
     }()
     
-    var presenter : ViewToLandingPresenterProtocol?
-    fileprivate var response : LandingResponse? = nil
-    fileprivate var from : From?
-    fileprivate var toolBar = UIToolbar()
-    fileprivate var picker  = UIPickerView()
-    fileprivate var selectArray : [String]? = []
-    var selectWord : String? = "BTC / USDT"
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUpModule()
-        
-        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
-        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
-        rightSwipe.direction = .right
-        leftSwipe.direction = .left
-        view.addGestureRecognizer(rightSwipe)
-        view.addGestureRecognizer(leftSwipe)
-    }
-    
-    @objc private func handleSwipes(_ sender:UISwipeGestureRecognizer) {
-        if sender.direction == .left {
-            tabBarController!.selectedIndex += 1
-        }
-        if sender.direction == .right {
-            tabBarController!.selectedIndex -= 1
-        }
+        setDropdownColorAttribute()
+        addSwipes()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         presenter?.preparingData()
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        presenter?.stop()
-        response = nil
-        tableView.reloadData()
-        if dropdownOut.isSelected == true{
-            onDoneButtonTapped()
-        }
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        self.view.layoutIfNeeded()
         
         dropdownOut.layer.cornerRadius = dropdownOut.bounds.size.height / 5
         dropdownOut.layer.masksToBounds = true
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        presenter?.stop()
+        response = nil
+        self.tableView.reloadData()
+        if dropdownOut.isSelected == true{
+            onDoneButtonTapped()
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -194,12 +184,13 @@ final class LandingViewController: UIViewController, UITableViewDataSource, UITa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = .none
+        
         switch indexPath.section {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! LandingTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: LandingViewController.constants.cellValue, for: indexPath) as! LandingTableViewCell
             
-            let backgroundView = UIView()
-            backgroundView.backgroundColor = .none
             cell.selectedBackgroundView = backgroundView
             
             switch from {
@@ -221,13 +212,11 @@ final class LandingViewController: UIViewController, UITableViewDataSource, UITa
             
             return cell
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell2", for: indexPath) as! LandingTableViewCell2
+            let cell = tableView.dequeueReusableCell(withIdentifier: LandingViewController.constants.cellSecondValue, for: indexPath) as! LandingTableViewCell2
             
-            let backgroundView = UIView()
-            backgroundView.backgroundColor = .none
             cell.selectedBackgroundView = backgroundView
-            
             cell.backgroundColor = .white
+            
             configureCell(cell: cell, for : indexPath)
             
             return cell
@@ -259,7 +248,7 @@ final class LandingViewController: UIViewController, UITableViewDataSource, UITa
         
         switch from {
         case .bid:
-            if response?.b?.count == nil || response?.b?.count == 0{
+            if response?.b?.count == nil{
                 cell.activityIndicator.startAnimating()
                 cell.activityIndicator.alpha = 1
             }else{
@@ -267,7 +256,7 @@ final class LandingViewController: UIViewController, UITableViewDataSource, UITa
                 cell.activityIndicator.alpha = 0
             }
         case .ask:
-            if response?.a?.count == nil || response?.a?.count == 0{
+            if response?.a?.count == nil{
                 cell.activityIndicator.startAnimating()
                 cell.activityIndicator.alpha = 1
             }else{
@@ -310,12 +299,41 @@ final class LandingViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     @objc private func onDoneButtonTapped() {
+        
         dropdownOut.isEnabled = true
         dropdownOut.isSelected = false
         dismiss(animated: true, completion: nil)
         toolBar.removeFromSuperview()
         picker.removeFromSuperview()
     }
+    
+    private func setDropdownColorAttribute(){
+        
+        let att = NSMutableAttributedString(string: (selectWord)!)
+        att.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.lightGray, range:  NSRange(location: 3, length: selectWord!.count - 3))
+        dropdownOut.setAttributedTitle(att, for: .normal)
+    }
+    
+    private func addSwipes(){
+        
+        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
+        rightSwipe.direction = .right
+        leftSwipe.direction = .left
+        view.addGestureRecognizer(rightSwipe)
+        view.addGestureRecognizer(leftSwipe)
+    }
+    
+    @objc private func handleSwipes(_ sender:UISwipeGestureRecognizer) {
+        
+        if sender.direction == .left {
+            tabBarController!.selectedIndex += 1
+        }
+        if sender.direction == .right {
+            tabBarController!.selectedIndex -= 1
+        }
+    }
+    
 }
 
 extension LandingViewController : PresenterToLandingViewProtocol{
@@ -340,7 +358,6 @@ extension LandingViewController : PresenterToLandingViewProtocol{
         
         DispatchQueue.global().async {
             self.response = response
-            
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
@@ -365,21 +382,25 @@ extension LandingViewController : UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         selectWord = selectArray?[row]
-        
-        let str = selectWord
-        let delimiter = " / "
-        let newStr = str?.components(separatedBy: delimiter)
-        amountLabel.text = "Amount \(newStr![0])"
-        priceLabel.text = "Price \(newStr![1])"
-        
         presenter?.selectQuotedCurrency(select : row)
-        let att = NSMutableAttributedString(string: (selectWord)!)
-        att.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.lightGray, range:  NSRange(location: 3, length: selectWord!.count - 3))
-        dropdownOut.setAttributedTitle(att, for: .normal)
+        
+        DispatchQueue.global().async { [self] in
+            let str = selectWord
+            let delimiter = " / "
+            let newStr = str?.components(separatedBy: delimiter)
+            let att = NSMutableAttributedString(string: (selectWord)!)
+            att.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.lightGray, range:  NSRange(location: 3, length: selectWord!.count - 3))
+            
+            DispatchQueue.main.async {
+                amountLabel.text = "Amount \(newStr![0])"
+                priceLabel.text = "Price \(newStr![1])"
+                dropdownOut.setAttributedTitle(att, for: .normal)
+            }
+        }
     }
 }
 
-class CustomButton: UIButton {
+final class CustomButton: UIButton {
     override func layoutSubviews() {
         super.layoutSubviews()
         

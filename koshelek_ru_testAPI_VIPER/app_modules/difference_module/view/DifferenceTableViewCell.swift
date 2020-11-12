@@ -9,12 +9,14 @@ import UIKit
 
 final class DifferenceTableViewCell: UITableViewCell {
     
+    fileprivate static let constants : Constants = Constants()
+    
     //MARK: - bidPriceLabel
     let bidPriceLabel : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .black
-        label.text = "0.0"
+        label.text = constants.zeroValue
         label.numberOfLines = 1
         label.textAlignment = .center
         return label
@@ -25,7 +27,7 @@ final class DifferenceTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .black
-        label.text = "0.0"
+        label.text = constants.zeroValue
         label.numberOfLines = 1
         label.textAlignment = .center
         return label
@@ -36,7 +38,7 @@ final class DifferenceTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .black
-        label.text = "0.0"
+        label.text = constants.zeroValue
         label.numberOfLines = 1
         label.textAlignment = .center
         return label
@@ -47,7 +49,7 @@ final class DifferenceTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .black
-        label.text = "0.0"
+        label.text = constants.zeroValue
         label.numberOfLines = 1
         label.textAlignment = .center
         return label

@@ -9,6 +9,15 @@ import UIKit
 
 final class DifferenceViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    var presenter : ViewToDifferencePresenterProtocol?
+    
+    fileprivate static let constants : Constants = Constants()
+    fileprivate var response: DifferenceResponse?
+    fileprivate var toolBar : UIToolbar = UIToolbar()
+    fileprivate var picker  : UIPickerView = UIPickerView()
+    fileprivate var selectArray : [String]? = []
+    fileprivate var selectWord : String? = constants.selectWord
+    
     //MARK: - tableView
     let tableView : UITableView = {
         let tableView = UITableView()
@@ -17,8 +26,8 @@ final class DifferenceViewController: UIViewController, UITableViewDataSource, U
         tableView.separatorStyle = .none
         tableView.showsHorizontalScrollIndicator = false
         tableView.showsVerticalScrollIndicator = false
-        tableView.register(DifferenceTableViewCell.self, forCellReuseIdentifier: "Cell")
-        tableView.register(DifferenceTableViewCell2.self, forCellReuseIdentifier: "Cell2")
+        tableView.register(DifferenceTableViewCell.self, forCellReuseIdentifier: constants.cellValue)
+        tableView.register(DifferenceTableViewCell2.self, forCellReuseIdentifier: constants.cellSecondValue)
         tableView.backgroundColor = .white
         return tableView
     }()
@@ -37,7 +46,7 @@ final class DifferenceViewController: UIViewController, UITableViewDataSource, U
         button.translatesAutoresizingMaskIntoConstraints = false
         button.isSelected = false
         button.addTarget(self, action: #selector(dropdown), for: .touchUpInside)
-        let img = UIImage(named: "arrowIcon")?.withRenderingMode(.alwaysTemplate)
+        let img = UIImage(named: constants.dropdownOutIcon)?.withRenderingMode(.alwaysTemplate)
         button.setImage(img, for: .normal )
         button.imageView?.contentMode = .scaleAspectFit
         button.imageView?.tintColor = .lightGray
@@ -52,7 +61,7 @@ final class DifferenceViewController: UIViewController, UITableViewDataSource, U
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .lightGray
-        label.text = "Bid price"
+        label.text = constants.bidValue
         label.numberOfLines = 1
         label.textAlignment = .center
         return label
@@ -63,7 +72,7 @@ final class DifferenceViewController: UIViewController, UITableViewDataSource, U
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .lightGray
-        label.text = "DIFF"
+        label.text = constants.diffValue
         label.numberOfLines = 1
         label.textAlignment = .center
         return label
@@ -74,7 +83,7 @@ final class DifferenceViewController: UIViewController, UITableViewDataSource, U
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .lightGray
-        label.text = "Ask price"
+        label.text = constants.askValue
         label.numberOfLines = 1
         label.textAlignment = .center
         return label
@@ -85,7 +94,7 @@ final class DifferenceViewController: UIViewController, UITableViewDataSource, U
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .lightGray
-        label.text = "DIFF"
+        label.text = constants.diffValue
         label.numberOfLines = 1
         label.textAlignment = .center
         return label
@@ -113,27 +122,13 @@ final class DifferenceViewController: UIViewController, UITableViewDataSource, U
         return stackView
     }()
     
-    var presenter : ViewToDifferencePresenterProtocol?
-    fileprivate var response: DifferenceResponse?
-    fileprivate var toolBar = UIToolbar()
-    fileprivate var picker  = UIPickerView()
-    fileprivate var selectArray : [String]? = []
-    var selectWord : String? = "BTC / USDT"
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         presenter?.startTimer()
         setUpModule()
-        
-        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
-        rightSwipe.direction = .right
-        view.addGestureRecognizer(rightSwipe)
-    }
-    
-    @objc private func handleSwipes(_ sender : UISwipeGestureRecognizer) {
-        if sender.direction == .right {
-            tabBarController!.selectedIndex -= 1
-        }
+        setDropdownColorAttribute()
+        addSwipes()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -143,22 +138,22 @@ final class DifferenceViewController: UIViewController, UITableViewDataSource, U
         tabBarController?.tabBar.tintColor = #colorLiteral(red: 0.1921568627, green: 0.1921568627, blue: 0.7843137255, alpha: 1)
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        presenter?.stop()
-        response = nil
-        tableView.reloadData()
-        if dropdownOut.isSelected == true{
-            onDoneButtonTapped()
-        }
-    }
-    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        self.view.layoutIfNeeded()
         
         dropdownOut.layer.cornerRadius = dropdownOut.bounds.size.height / 5
         dropdownOut.layer.masksToBounds = true
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        presenter?.stop()
+        response = nil
+        self.tableView.reloadData()
+        if dropdownOut.isSelected == true{
+            onDoneButtonTapped()
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -179,8 +174,7 @@ final class DifferenceViewController: UIViewController, UITableViewDataSource, U
                 }
             }
         case 1:
-            if response?.a?.count == nil || response?.a?.count == 0
-                || response?.b?.count == nil || response?.b?.count == 0{
+            if response?.a?.count == nil || response?.b?.count == nil{
                 return 1
             }else{
                 return 0
@@ -192,12 +186,13 @@ final class DifferenceViewController: UIViewController, UITableViewDataSource, U
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = .none
+        
         switch indexPath.section {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! DifferenceTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: DifferenceViewController.constants.cellValue, for: indexPath) as! DifferenceTableViewCell
             
-            let backgroundView = UIView()
-            backgroundView.backgroundColor = .none
             cell.selectedBackgroundView = backgroundView
             
             cell.bidPriceLabel.textColor = #colorLiteral(red: 0.1921568627, green: 0.7843137255, blue: 0.1921568627, alpha: 1)
@@ -208,17 +203,16 @@ final class DifferenceViewController: UIViewController, UITableViewDataSource, U
             }else{
                 cell.backgroundColor = #colorLiteral(red: 0.9647058824, green: 0.9647058824, blue: 0.9647058824, alpha: 1)
             }
+            
             configureCell(cell: cell, for: indexPath)
             
             return cell
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell2", for: indexPath) as! DifferenceTableViewCell2
+            let cell = tableView.dequeueReusableCell(withIdentifier: DifferenceViewController.constants.cellSecondValue, for: indexPath) as! DifferenceTableViewCell2
             
-            let backgroundView = UIView()
-            backgroundView.backgroundColor = .none
             cell.selectedBackgroundView = backgroundView
-            
             cell.backgroundColor = .white
+            
             configureCell(cell: cell, for : indexPath)
             
             return cell
@@ -250,8 +244,7 @@ final class DifferenceViewController: UIViewController, UITableViewDataSource, U
         cell.activityIndicator.startAnimating()
         cell.activityIndicator.alpha = 1
         
-        if response?.a?.count == nil || response?.a?.count == 0
-            || response?.b?.count == nil || response?.b?.count == 0{
+        if response?.a?.count == nil || response?.b?.count == nil{
             cell.activityIndicator.startAnimating()
             cell.activityIndicator.alpha = 1
         }else{
@@ -291,11 +284,31 @@ final class DifferenceViewController: UIViewController, UITableViewDataSource, U
     }
     
     @objc private func onDoneButtonTapped() {
+        
         dropdownOut.isEnabled = true
         dropdownOut.isSelected = false
         dismiss(animated: true, completion: nil)
         toolBar.removeFromSuperview()
         picker.removeFromSuperview()
+    }
+    
+    private func setDropdownColorAttribute(){
+        
+        let att = NSMutableAttributedString(string: (selectWord)!)
+        att.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.lightGray, range:  NSRange(location: 3, length: selectWord!.count - 3))
+        dropdownOut.setAttributedTitle(att, for: .normal)
+    }
+    
+    private func addSwipes(){
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
+        rightSwipe.direction = .right
+        view.addGestureRecognizer(rightSwipe)
+    }
+    
+    @objc private func handleSwipes(_ sender : UISwipeGestureRecognizer) {
+        if sender.direction == .right {
+            tabBarController!.selectedIndex -= 1
+        }
     }
 }
 
@@ -318,9 +331,14 @@ extension DifferenceViewController : PresenterToDifferenceViewProtocol{
     
     func viewTimer(timer : String?){
         
-        let attTime = NSMutableAttributedString(string: (timer)!)
-        attTime.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.lightGray, range:  NSRange(location: 16, length: timer!.count - 16))
-        timeLabel.attributedText = attTime
+        DispatchQueue.global().async { [self] in
+            let attTime = NSMutableAttributedString(string: (timer)!)
+            attTime.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.lightGray, range:  NSRange(location: 16, length: timer!.count - 16))
+            
+            DispatchQueue.main.async {
+                timeLabel.attributedText = attTime
+            }
+        }
     }
 }
 
@@ -342,8 +360,15 @@ extension DifferenceViewController : UIPickerViewDelegate, UIPickerViewDataSourc
         
         selectWord = selectArray?[row]
         presenter?.selectQuotedCurrency(select : row)
-        let att = NSMutableAttributedString(string: (selectWord)!)
-        att.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.lightGray, range:  NSRange(location: 3, length: selectWord!.count - 3))
-        dropdownOut.setAttributedTitle(att, for: .normal)
+        selectWord = selectArray?[row]
+        presenter?.selectQuotedCurrency(select : row)
+        
+        DispatchQueue.global().async { [self] in
+            let att = NSMutableAttributedString(string: (selectWord)!)
+            att.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.lightGray, range:  NSRange(location: 3, length: selectWord!.count - 3))
+            DispatchQueue.main.async {
+                dropdownOut.setAttributedTitle(att, for: .normal)
+            }
+        }
     }
 }

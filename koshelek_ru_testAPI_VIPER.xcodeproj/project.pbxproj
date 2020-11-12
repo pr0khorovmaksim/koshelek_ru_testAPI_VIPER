@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AB1955A311A0EAD60C4E420D /* Pods_koshelek_ru_testAPI_VIPER.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2B7D77226FC985E7DA91841 /* Pods_koshelek_ru_testAPI_VIPER.framework */; };
+		B50CC66C25596F990071E4F8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50CC66B25596F990071E4F8 /* Constants.swift */; };
 		B577068825570226000FD2C0 /* DifferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577068725570226000FD2C0 /* DifferenceViewController.swift */; };
 		B577068B2557022E000FD2C0 /* DifferencePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577068A2557022E000FD2C0 /* DifferencePresenter.swift */; };
 		B577068E25570236000FD2C0 /* DifferenceRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577068D25570236000FD2C0 /* DifferenceRouter.swift */; };
@@ -38,6 +39,7 @@
 		86C0E44E0A2E52202E404C5C /* Pods-koshelek_ru_testAPI_VIPER.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-koshelek_ru_testAPI_VIPER.release.xcconfig"; path = "Pods/Target Support Files/Pods-koshelek_ru_testAPI_VIPER/Pods-koshelek_ru_testAPI_VIPER.release.xcconfig"; sourceTree = "<group>"; };
 		A2B7D77226FC985E7DA91841 /* Pods_koshelek_ru_testAPI_VIPER.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_koshelek_ru_testAPI_VIPER.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4D62CA66D4B334D52995291 /* Pods-koshelek_ru_testAPI_VIPER.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-koshelek_ru_testAPI_VIPER.debug.xcconfig"; path = "Pods/Target Support Files/Pods-koshelek_ru_testAPI_VIPER/Pods-koshelek_ru_testAPI_VIPER.debug.xcconfig"; sourceTree = "<group>"; };
+		B50CC66B25596F990071E4F8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B577068725570226000FD2C0 /* DifferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifferenceViewController.swift; sourceTree = "<group>"; };
 		B577068A2557022E000FD2C0 /* DifferencePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifferencePresenter.swift; sourceTree = "<group>"; };
 		B577068D25570236000FD2C0 /* DifferenceRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifferenceRouter.swift; sourceTree = "<group>"; };
@@ -86,6 +88,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B50CC66A25596F8C0071E4F8 /* app_constants */ = {
+			isa = PBXGroup;
+			children = (
+				B50CC66B25596F990071E4F8 /* Constants.swift */,
+			);
+			path = app_constants;
+			sourceTree = "<group>";
+		};
 		B5BB931525554B9E00602EFC = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +117,7 @@
 		B5BB932025554B9E00602EFC /* koshelek_ru_testAPI_VIPER */ = {
 			isa = PBXGroup;
 			children = (
+				B50CC66A25596F8C0071E4F8 /* app_constants */,
 				B5BB933625554BB500602EFC /* app_settings */,
 				B5BB933725554BC800602EFC /* app_modules */,
 				B5BB933A25554C0900602EFC /* app_icons */,
@@ -407,6 +418,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B50CC66C25596F990071E4F8 /* Constants.swift in Sources */,
 				B57706A42557E152000FD2C0 /* LandingTableViewCell2.swift in Sources */,
 				B5BB935E25554F3E00602EFC /* TabBarRouter.swift in Sources */,
 				B577069425570244000FD2C0 /* DifferenceEntity.swift in Sources */,
